@@ -1,0 +1,37 @@
+{
+  "title": "Facts are hares, truth is a tortoise",
+  "lede": "Millions of studies are published every year, and many disagree. Here is how to tell strong evidence from weak.",
+  "stats": [
+    {"value": "7 million", "label": "scholarly articles published in 2025"},
+    {"value": "19,000+", "label": "published every day"},
+    {"value": "3 years", "label": "average time for one systematic review"}
+  ],
+  "ladder": [
+    {"id": "anecdote", "name": "Anecdote", "score": 1, "note": "One person's story. Cannot separate cause from chance."},
+    {"id": "single", "name": "Single study", "score": 2, "note": "A lead worth testing. Findings often fail to hold up."},
+    {"id": "cohort", "name": "Observational study", "score": 3, "note": "Shows association, but other factors may explain it."},
+    {"id": "rct", "name": "Randomised trial", "score": 4, "note": "Tests cause directly, but one trial can still mislead."},
+    {"id": "review", "name": "Systematic review", "score": 5, "note": "Pools and appraises all relevant studies. The strongest test of a claim."}
+  ],
+  "voteCounting": {
+    "heading": "Why counting studies misleads",
+    "body": "Four papers say wine is unhealthy and five say it is not. Counting suggests the five win. But if the five studied only five people each and the four studied 5,000, the count hides what matters: sample size and quality.",
+    "fix": "A systematic review weighs each study instead of counting it."
+  },
+  "timeline": [
+    {"year": "1945", "text": "A study says babies should sleep face down."},
+    {"year": "1957", "text": "A hugely popular childcare guide changes its advice to match. Sudden infant deaths rise."},
+    {"year": "1991", "text": "Reviews of earlier studies lead governments to advise sleeping on the back. The earlier advice may have cost up to 50,000 lives."}
+  ],
+  "cases": [
+    {"title": "Paracetamol in pregnancy", "text": "Systematic reviews found no clear link with autism or ADHD in children."},
+    {"title": "Management fads", "text": "Reviews suggest many standard practices, such as performance appraisals, lack strong evidence that they help."}
+  ],
+  "viral": "Reviews take about three years on average and are costly. AI summaries can hallucinate. Meanwhile a tentative single study travels fast, so myths and fads keep flying.",
+  "widget": {
+    "heading": "Rate a claim",
+    "sizes": [{"id": "s", "name": "Small (under 100 people)", "mod": -1}, {"id": "m", "name": "Medium", "mod": 0}, {"id": "l", "name": "Large (thousands)", "mod": 0.5}],
+    "verdicts": ["Very weak", "Weak", "Moderate", "Strong", "Strong"]
+  },
+  "sources": "Based on 'Facts Are Hares, But Truth Is A Tortoise' (Mindfield, TOI), drawing on Helen Pearson's Beyond Belief."
+}
