@@ -1,0 +1,5 @@
+- Keep all text and numbers in website/content.json and render from it (DRY). No duplicated copy in HTML.
+- Separate concerns: data (JSON), layout (HTML), style (CSS), behaviour (JS). One job per function.
+- Small iterations: change one section at a time; keep files under ~150 lines.
+- Plain language, sentence case, active voice. Cite sources in the footer.
+- Do not invent statistics. Use only figures present in content.json.
