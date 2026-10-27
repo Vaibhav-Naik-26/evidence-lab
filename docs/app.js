@@ -21,26 +21,28 @@ fetch("content.json").then((r) => r.json()).then((c) => {
   };
 
   ["w-type", "w-size"].forEach((id) => $(id).addEventListener("change", rate)); rate();
+
+
+  // Vote-counting demo
+  const d = c.voteDemo;
+  $("vd-h").textContent = d.heading; $("vd-intro").textContent = d.intro;
+  $("vd-a-l").textContent = d.a.label; $("vd-b-l").textContent = d.b.label;
+
+  const ids = ["a-n", "a-p", "b-n", "b-p"];
+  [d.a.studies, d.a.people, d.b.studies, d.b.people].forEach((v, i) => ($(ids[i]).value = v));
+  const fmt = (n) => n.toLocaleString("en-IN");
+
+  const voteDemo = () => {
+    const [an, ap, bn, bp] = ids.map((id) => Math.max(1, Number($(id).value) || 1));
+    const ta = an * ap, tb = bn * bp, top = Math.max(ta, tb);
+    const win = (x, y) => (x === y ? d.tie : x > y ? d.a.short : d.b.short);
+
+    $("vd-count").textContent = d.countLine.replace("{winner}", win(an, bn));
+    $("vd-weigh").textContent = d.weighLine.replace("{winner}", win(ta, tb)).replace("{a}", fmt(ta)).replace("{b}", fmt(tb));
+    $("bar-a").style.width = Math.max(1, (100 * ta) / top) + "%";
+    $("bar-b").style.width = Math.max(1, (100 * tb) / top) + "%";
+  };
+
+  ids.forEach((id) => $(id).addEventListener("input", voteDemo)); voteDemo();
+
 });
-
-// Vote-counting demo
-const d = c.voteDemo;
-$("vd-h").textContent = d.heading; $("vd-intro").textContent = d.intro;
-$("vd-a-l").textContent = d.a.label; $("vd-b-l").textContent = d.b.label;
-
-const ids = ["a-n", "a-p", "b-n", "b-p"];
-[d.a.studies, d.a.people, d.b.studies, d.b.people].forEach((v, i) => ($(ids[i]).value = v));
-const fmt = (n) => n.toLocaleString("en-IN");
-
-const voteDemo = () => {
-  const [an, ap, bn, bp] = ids.map((id) => Math.max(1, Number($(id).value) || 1));
-  const ta = an * ap, tb = bn * bp, top = Math.max(ta, tb);
-  const win = (x, y) => (x === y ? d.tie : x > y ? d.a.short : d.b.short);
-
-  $("vd-count").textContent = d.countLine.replace("{winner}", win(an, bn));
-  $("vd-weigh").textContent = d.weighLine.replace("{winner}", win(ta, tb)).replace("{a}", fmt(ta)).replace("{b}", fmt(tb));
-  $("bar-a").style.width = Math.max(1, (100 * ta) / top) + "%";
-  $("bar-b").style.width = Math.max(1, (100 * tb) / top) + "%";
-};
-
-ids.forEach((id) => $(id).addEventListener("input", voteDemo)); voteDemo();
