@@ -45,4 +45,12 @@ fetch("content.json").then((r) => r.json()).then((c) => {
 
   ids.forEach((id) => $(id).addEventListener("input", voteDemo)); voteDemo();
 
+  // Policy ideas
+  const p = c.policies;
+  $("pol-h").textContent = p.heading; $("pol-intro").textContent = p.intro;
+  p.items.forEach((i) => {
+    const el = document.createElement("article"); el.className = "card";
+    el.innerHTML = `<h3>${i.title}</h3><p><b>Helps with:</b> ${i.fixes}</p><p><b>Trade-off:</b> ${i.tradeoff}</p>`;
+    $("pol-list").append(el);
+  });
 });
