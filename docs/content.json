@@ -23,6 +23,25 @@
     {"year": "1957", "text": "A hugely popular childcare guide changes its advice to match. Sudden infant deaths rise."},
     {"year": "1991", "text": "Reviews of earlier studies lead governments to advise sleeping on the back. The earlier advice may have cost up to 50,000 lives."}
   ],
+  "voteDemo": {
+    "heading": "Try it: count vs weigh",
+    "intro": "Change the numbers. Counting studies and weighing them can give different winners.",
+    "a": {
+      "label": "Studies saying wine is fine",
+      "short": "the 'fine' side",
+      "studies": 5,
+      "people": 5
+    },
+    "b": {
+      "label": "Studies saying wine is harmful",
+      "short": "the 'harmful' side",
+      "studies": 4,
+      "people": 5000
+    },
+    "tie": "neither side",
+    "countLine": "Counting studies: {winner} wins.",
+    "weighLine": "Weighing participants: {winner} has more evidence ({a} vs {b} people)."
+  },
   "cases": [
     {"title": "Paracetamol in pregnancy", "text": "Systematic reviews found no clear link with autism or ADHD in children."},
     {"title": "Management fads", "text": "Reviews suggest many standard practices, such as performance appraisals, lack strong evidence that they help."}

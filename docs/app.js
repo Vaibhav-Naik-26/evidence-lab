@@ -12,11 +12,35 @@ fetch("content.json").then((r) => r.json()).then((c) => {
   $("viral").textContent = c.viral; $("sources").textContent = c.sources; $("w-h").textContent = c.widget.heading;
   c.ladder.forEach((l) => $("w-type").add(new Option(l.name, l.id)));
   c.widget.sizes.forEach((s) => $("w-size").add(new Option(s.name, s.id)));
+
   const rate = () => {
     const base = c.ladder.find((l) => l.id === $("w-type").value).score;
     const mod = c.widget.sizes.find((s) => s.id === $("w-size").value).mod;
     const i = Math.max(1, Math.min(5, Math.round(base + mod))) - 1;
     $("w-out").textContent = `${c.widget.verdicts[i]} evidence. Check whether a systematic review exists before acting on it.`;
   };
+
   ["w-type", "w-size"].forEach((id) => $(id).addEventListener("change", rate)); rate();
 });
+
+// Vote-counting demo
+const d = c.voteDemo;
+$("vd-h").textContent = d.heading; $("vd-intro").textContent = d.intro;
+$("vd-a-l").textContent = d.a.label; $("vd-b-l").textContent = d.b.label;
+
+const ids = ["a-n", "a-p", "b-n", "b-p"];
+[d.a.studies, d.a.people, d.b.studies, d.b.people].forEach((v, i) => ($(ids[i]).value = v));
+const fmt = (n) => n.toLocaleString("en-IN");
+
+const voteDemo = () => {
+  const [an, ap, bn, bp] = ids.map((id) => Math.max(1, Number($(id).value) || 1));
+  const ta = an * ap, tb = bn * bp, top = Math.max(ta, tb);
+  const win = (x, y) => (x === y ? d.tie : x > y ? d.a.short : d.b.short);
+
+  $("vd-count").textContent = d.countLine.replace("{winner}", win(an, bn));
+  $("vd-weigh").textContent = d.weighLine.replace("{winner}", win(ta, tb)).replace("{a}", fmt(ta)).replace("{b}", fmt(tb));
+  $("bar-a").style.width = Math.max(1, (100 * ta) / top) + "%";
+  $("bar-b").style.width = Math.max(1, (100 * tb) / top) + "%";
+};
+
+ids.forEach((id) => $(id).addEventListener("input", voteDemo)); voteDemo();
